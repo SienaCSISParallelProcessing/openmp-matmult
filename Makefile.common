@@ -1,0 +1,17 @@
+# Common Makefile for OpenMP Matrix Multiplication examples
+#
+# Jim Teresco, CSIS-335, Siena College, Fall 2021
+#
+# The Makefile in each directory will define PROGRAM as the
+# name of the program with the main function, and include this
+# common Makefile
+#
+CFILES=$(PROGRAM).c timer.c
+OFILES=$(CFILES:.c=.o)
+CC=gcc -fopenmp
+
+$(PROGRAM):	$(OFILES)
+	$(CC) -o $(PROGRAM) $(OFILES)
+
+clean::
+	/bin/rm -f $(PROGRAM) $(OFILES)
