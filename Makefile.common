@@ -8,10 +8,15 @@
 #
 CFILES=$(PROGRAM).c timer.c
 OFILES=$(CFILES:.c=.o)
-CC=gcc -fopenmp
+# for noreaster
+CC=clang
+CFLAGS=-fopenmp=libomp
+# for Stampede3
+#CC=gcc
+#CFLAGS=-fopenmp
 
 $(PROGRAM):	$(OFILES)
-	$(CC) -o $(PROGRAM) $(OFILES)
+	$(CC) $(CFLAGS) -o $(PROGRAM) $(OFILES)
 
 clean::
 	/bin/rm -f $(PROGRAM) $(OFILES)
