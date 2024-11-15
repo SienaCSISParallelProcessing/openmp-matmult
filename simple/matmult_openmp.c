@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
   
   gettimeofday(&start, NULL);
   /* matrix-matrix multiply */
-#pragma omp parallel for
+#pragma omp parallel for private(i,j,k)
   for (i=0; i<SIZE; i++) {  /* for each row */
     for (j=0; j<SIZE; j++) { /* for each column */
       /* initialize result to 0 */
@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
   }
   gettimeofday(&stop, NULL);
   printf("Multiplication took: %f seconds\n", diffgettime(start,stop));
-  
+
   /* This is here to make sure the optimizing compiler doesn't
      get any big ideas about "optimizing" code away completely */
   sum=0;
